@@ -9,6 +9,8 @@ namespace TunifyPrj.Repositories.Interfaces
         Task<Artist> InsertAsync(Artist artist);
         Task<Artist> UpdateAsync(int id, Artist artist);
         Task<Artist> DeleteAsync(int artistId);
+        Task AddSongToArtistAsync(int artistId, int songId);
+        Task<IEnumerable<Song>> GetSongsByArtistAsync(int artistId);
     }
 
 }
