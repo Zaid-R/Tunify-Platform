@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using TunifyPrj.Data;
 using TunifyPrj.Models;
 using TunifyPrj.Repositories.Interfaces;
+using TunifyPrj.Repositories.Services;
 
 namespace TunifyPrj.Controllers
 {
@@ -16,10 +17,11 @@ namespace TunifyPrj.Controllers
     public class PlaylistsController : ControllerBase
     {
         private readonly IPlaylist _playlist;
-
-        public PlaylistsController(IPlaylist Playlist)
+        private readonly ISong _song;
+        public PlaylistsController(IPlaylist playlist, ISong song)
         {
-            _playlist = Playlist;
+            _playlist = playlist;
+            _song = song;
         }
 
         // GET: api/Playlists
@@ -61,6 +63,20 @@ namespace TunifyPrj.Controllers
         {
             var deletedEmployee = _playlist.DeleteAsync(id);
             return Ok(deletedEmployee);
+        }
+
+        [HttpPost("{playlistId}/songs/{songId}")]
+        public async Task<IActionResult> AddSongToPlaylist(int playlistId, int songId)
+        {
+            await _playlist.AddSongToPlaylistAsync(playlistId, songId);
+            return Ok();
+        }
+
+        [HttpGet("{playlistId}/songs")]
+        public async Task<IActionResult> GetSongsInPlaylist(int playlistId)
+        {
+            var songs = await _playlist.GetSongsInPlaylistAsync(playlistId);
+            return Ok(songs);
         }
     }
 }
