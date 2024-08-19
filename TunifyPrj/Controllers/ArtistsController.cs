@@ -66,7 +66,6 @@ namespace TunifyPrj.Controllers
             return Ok(deletedEmployee);
         }
 
-        [HttpPost("{artistId}/songs/{songId}")]
 
         [HttpPost("{artistId}/songs/{songId}")]
         public async Task<IActionResult> AddSongToArtist(int artistId, int songId)
