@@ -1,6 +1,8 @@
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TunifyPrj.Data;
+using TunifyPrj.Models;
 using TunifyPrj.Repositories.Interfaces;
 using TunifyPrj.Repositories.Services;
 
@@ -14,6 +16,9 @@ namespace TunifyPrj
             builder.Services.AddControllers();
             string ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
 
+            builder.Services.AddIdentity<CustomUser, IdentityRole>()
+                            .AddEntityFrameworkStores<TunifyContext>();
+
             builder.Services.AddDbContext<TunifyContext>(optionsX => optionsX.UseSqlServer(ConnectionString));
             builder.Services.AddSwaggerGen(options =>
             {
@@ -25,11 +30,17 @@ namespace TunifyPrj
                 });
             });
 
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddScoped<IAccount, AccountService>();
             builder.Services.AddScoped<IUser, UserService>();
             builder.Services.AddScoped<IArtist, ArtistService>();
             builder.Services.AddScoped<IPlaylist, PlaylistService>();
             builder.Services.AddScoped<ISong, SongService>();
+
             var app = builder.Build();
+
+            app.UseAuthentication();
+
             app.UseSwagger(
              options =>
              {
