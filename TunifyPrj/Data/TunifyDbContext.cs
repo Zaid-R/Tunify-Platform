@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using TunifyPrj.Models;
+using TunifyPrj.Models.DTOs;
 
 namespace TunifyPrj.Data
 {
-    public class TunifyContext : DbContext
+    public class TunifyContext : IdentityDbContext<CustomUser>
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
@@ -29,6 +32,7 @@ namespace TunifyPrj.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
 
             #region PlaylistSong configuration
             modelBuilder.Entity<PlaylistSong>()
