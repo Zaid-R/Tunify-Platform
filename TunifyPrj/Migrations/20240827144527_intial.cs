@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TunifyPrj.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class intial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -46,6 +46,7 @@ namespace TunifyPrj.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -322,15 +323,15 @@ namespace TunifyPrj.Migrations
             migrationBuilder.InsertData(
                 table: "Albums",
                 columns: new[] { "AlbumID", "AlbumName", "ArtistID", "ReleaseDate" },
-                values: new object[] { 1, "Album 1", 1, new DateTime(2024, 8, 23, 10, 31, 10, 956, DateTimeKind.Local).AddTicks(7479) });
+                values: new object[] { 1, "Album 1", 1, new DateTime(2024, 8, 27, 17, 45, 26, 842, DateTimeKind.Local).AddTicks(8532) });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserID", "Email", "JoinDate", "SubscriptionID", "Username" },
                 values: new object[,]
                 {
-                    { 1, "user1@example.com", new DateTime(2024, 8, 23, 10, 31, 10, 956, DateTimeKind.Local).AddTicks(7179), 1, "user1" },
-                    { 2, "user2@example.com", new DateTime(2024, 8, 23, 10, 31, 10, 956, DateTimeKind.Local).AddTicks(7192), 1, "user2" }
+                    { 1, "user1@example.com", new DateTime(2024, 8, 27, 17, 45, 26, 842, DateTimeKind.Local).AddTicks(8301), 1, "user1" },
+                    { 2, "user2@example.com", new DateTime(2024, 8, 27, 17, 45, 26, 842, DateTimeKind.Local).AddTicks(8315), 1, "user2" }
                 });
 
             migrationBuilder.InsertData(
@@ -338,8 +339,8 @@ namespace TunifyPrj.Migrations
                 columns: new[] { "PlaylistID", "CreatedDate", "PlaylistName", "UserID" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 8, 23, 10, 31, 10, 956, DateTimeKind.Local).AddTicks(7500), "Playlist 1", 1 },
-                    { 2, new DateTime(2024, 8, 23, 10, 31, 10, 956, DateTimeKind.Local).AddTicks(7502), "Playlist 2", 2 }
+                    { 1, new DateTime(2024, 8, 27, 17, 45, 26, 842, DateTimeKind.Local).AddTicks(8547), "Playlist 1", 1 },
+                    { 2, new DateTime(2024, 8, 27, 17, 45, 26, 842, DateTimeKind.Local).AddTicks(8549), "Playlist 2", 2 }
                 });
 
             migrationBuilder.InsertData(

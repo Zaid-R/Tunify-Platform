@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TunifyPrj.Data;
@@ -36,10 +37,24 @@ namespace TunifyPrj
             builder.Services.AddScoped<IArtist, ArtistService>();
             builder.Services.AddScoped<IPlaylist, PlaylistService>();
             builder.Services.AddScoped<ISong, SongService>();
+            builder.Services.AddScoped<JwtTokenService>();
+
+            // add auth service to the app using jwt
+            builder.Services.AddAuthentication(
+                options =>
+                {
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                }
+                ).AddJwtBearer(
+                options =>
+                {
+                    options.TokenValidationParameters = JwtTokenService.ValidateToken(builder.Configuration);
+                });
 
             var app = builder.Build();
 
-            app.UseAuthentication();
 
             app.UseSwagger(
              options =>
@@ -56,6 +71,8 @@ namespace TunifyPrj
             });
             app.MapControllers();
             app.MapGet("/", () => "Hello World!");
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.Run();
 
