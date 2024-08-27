@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TunifyPrj.Models.DTOs;
 using TunifyPrj.Repositories.Interfaces;
 using TunifyPrj.Repositories.Services;
@@ -15,8 +16,6 @@ namespace TunifyPrj.Controllers
         {
             accountService = _context;
         }
-
-
 
 
         [HttpPost("Register")]
@@ -56,6 +55,7 @@ namespace TunifyPrj.Controllers
             return user;
         }
 
+        [Authorize]
         [HttpPost("Logout")]
         public async Task<IActionResult> Logout()
         {

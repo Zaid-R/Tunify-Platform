@@ -185,7 +185,7 @@ namespace TunifyPrj.Migrations
                             AlbumID = 1,
                             AlbumName = "Album 1",
                             ArtistID = 1,
-                            ReleaseDate = new DateTime(2024, 8, 23, 10, 31, 10, 956, DateTimeKind.Local).AddTicks(7479)
+                            ReleaseDate = new DateTime(2024, 8, 27, 17, 45, 26, 842, DateTimeKind.Local).AddTicks(8532)
                         });
                 });
 
@@ -263,6 +263,9 @@ namespace TunifyPrj.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -311,14 +314,14 @@ namespace TunifyPrj.Migrations
                         new
                         {
                             PlaylistID = 1,
-                            CreatedDate = new DateTime(2024, 8, 23, 10, 31, 10, 956, DateTimeKind.Local).AddTicks(7500),
+                            CreatedDate = new DateTime(2024, 8, 27, 17, 45, 26, 842, DateTimeKind.Local).AddTicks(8547),
                             PlaylistName = "Playlist 1",
                             UserID = 1
                         },
                         new
                         {
                             PlaylistID = 2,
-                            CreatedDate = new DateTime(2024, 8, 23, 10, 31, 10, 956, DateTimeKind.Local).AddTicks(7502),
+                            CreatedDate = new DateTime(2024, 8, 27, 17, 45, 26, 842, DateTimeKind.Local).AddTicks(8549),
                             PlaylistName = "Playlist 2",
                             UserID = 2
                         });
@@ -489,7 +492,7 @@ namespace TunifyPrj.Migrations
                         {
                             UserID = 1,
                             Email = "user1@example.com",
-                            JoinDate = new DateTime(2024, 8, 23, 10, 31, 10, 956, DateTimeKind.Local).AddTicks(7179),
+                            JoinDate = new DateTime(2024, 8, 27, 17, 45, 26, 842, DateTimeKind.Local).AddTicks(8301),
                             SubscriptionID = 1,
                             Username = "user1"
                         },
@@ -497,7 +500,7 @@ namespace TunifyPrj.Migrations
                         {
                             UserID = 2,
                             Email = "user2@example.com",
-                            JoinDate = new DateTime(2024, 8, 23, 10, 31, 10, 956, DateTimeKind.Local).AddTicks(7192),
+                            JoinDate = new DateTime(2024, 8, 27, 17, 45, 26, 842, DateTimeKind.Local).AddTicks(8315),
                             SubscriptionID = 1,
                             Username = "user2"
                         });
